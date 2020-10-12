@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+p {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 60px;
+}
+</style>
+</head>
+<body> <!--style="background-color:#8B4513">-->
+<div>
+<button id = "P7" onclick = "changeColor()"> P7 button </button> 
+<!--<p style="color:#800000" id="demo"></p>-->
+<p id="demo"></p>
+
+</div>
+
+<script>
+
+var p7=0;
+
+function changeColor() {
+	document.body.style.background = "#8B4513"; 
+	document.body.style.color = "#800000";
+	var elem = document.getElementById("P7");
+	elem.parentNode.removeChild(elem);
+	p7=1;
+	var now = new Date();
+	var tmaotc = getNextDayOfWeek(now, WantedDay)
+	
+}
+
+//Find day of next friday
+function getNextDayOfWeek(date, dayOfWeek) {
+	var resultDate = new Date(date.getTime());
+	resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
+	return resultDate;
+}
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+	if (p7 == 0){
+		var WantedDay=5;
+		var WantedHour=18;
+		var WantedMinute=0;
+	}else{
+		var WantedDay=6;
+		var WantedHour=10;
+		var WantedMinute=30;
+	}
+	
+		// Get today's date and time
+	var now = new Date();
+	
+	var tmaotc = getNextDayOfWeek(now, WantedDay)
+
+	// Get today's date and time
+	var now = new Date();
+
+	// Set the date we're counting down to
+	tmaotc.setHours(WantedHour)
+	tmaotc.setMinutes(WantedMinute)
+	tmaotc.setSeconds(0)
+	tmaotc.setMilliseconds(0)
+	var countDownDate = tmaotc.getTime();
+
+	// Find the distance between now and the count down date
+	var distance = countDownDate - now;
+
+	// Time calculations for days, hours, minutes and seconds
+	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+	// Output the result in an element with id="demo"
+	document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+
+	var colors = ["#000000","#8B0000","#B22222","#FF0000","#FA8072","#FF6347","#FF7F50","#FF4500","#D2691E","#F4A460","#FF8C00","#FFA500","#B8860B","#DAA520","#FFD700","#808000","#FFFF00","#9ACD32","#ADFF2F","#7FFF00","#7CFC00","#008000","#00FF00","#32CD32","#00FF7F","#00FA9A","#40E0D0","#20B2AA","#48D1CC","#008B8B","#00FFFF","#00CED1","#00BFFF","#1E90FF","#4169E1","#000080","#00008B","#0000CD","#0000FF","#8A2BE2","#9932CC","#9400D3","#800080","#8B008B","#FF00FF","#C71585","#FF1493","#FF69B4","#DC143C","#A52A2A","#CD5C5C","#BC8F8F","#F08080","#FFFAFA","#FFE4E1","#E9967A","#FFA07A","#A0522D","#FFF5EE","#8B4513","#FFDAB9","#CD853F","#FAF0E6","#FFE4C4","#DEB887","#D2B48C","#FAEBD7","#FFDEAD","#FFEBCD","#FFEFD5","#FFE4B5","#F5DEB3","#FDF5E6","#FFFAF0","#FFF8DC","#F0E68C","#FFFACD","#EEE8AA","#BDB76B","#F5F5DC","#FAFAD2","#FFFFE0","#FFFFF0","#6B8E23","#556B2F","#8FBC8F","#006400","#228B22","#90EE90","#98FB98","#F0FFF0","#2E8B57","#3CB371","#F5FFFA","#66CDAA","#7FFFD4","#2F4F4F","#AFEEEE","#E0FFFF","#F0FFFF","#5F9EA0","#B0E0E6","#ADD8E6","#87CEEB","#87CEFA","#4682B4","#F0F8FF","#708090","#778899","#B0C4DE","#6495ED","#E6E6FA","#F8F8FF","#191970","#6A5ACD","#483D8B","#7B68EE","#9370DB","#4B0082","#BA55D3","#DDA0DD","#EE82EE","#D8BFD8","#DA70D6","#FFF0F5","#DB7093","#FFC0CB","#FFB6C1","#000000","#696969","#808080",]
+	var currentColor = 0
+	var lis = document.querySelectorAll("#demo")
+
+	// If the count down is over, write some text
+	//If Saturday/Sunday or Friday after 18h
+	if ((now.getDay() == 0) || (now.getDay() == 6) || ((now.getDay() == 5) && (now.getHours() >= 18))){
+		clearInterval(x);
+		document.getElementById("demo").innerHTML = "TMAOTC";
+		function changeColor() {
+			--currentColor
+			if (currentColor < 0) currentColor = colors.length -1
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.color = colors[(currentColor +i) % colors.length]
+			}
+		}
+		setInterval(changeColor, 1000)
+	}
+	
+	if( ((now.getHours() >= 17) && (now.getHours() <= 18))){
+		function changeColor() {
+			--currentColor
+			if (currentColor < 0) currentColor = colors.length -1
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].style.color = colors[(currentColor +i) % colors.length]
+			}
+		}
+		setInterval(changeColor, 1000)
+	}
+	
+	
+}, 1000);
+
+
+
+
+
+</script>
+
+</body>
