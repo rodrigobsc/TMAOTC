@@ -12,7 +12,8 @@ p {
 </head>
 <body> <!--style="background-color:#8B4513">-->
 <div>
-<button id = "P7" onclick = "changeColor()"> P7 button </button> 
+<button id = "ZE" onclick = "changeColor()"> Zé tolas, the man! </button> 
+<button id = "P7" onclick = "changeColor2()"> P7 button </button> 
 <!--<p style="color:#800000" id="demo"></p>-->
 <p id="demo"></p>
 
@@ -21,6 +22,7 @@ p {
 <script>
 
 var p7=0;
+var ze=0;
 
 function changeColor() {
 	document.body.style.background = "#8B4513"; 
@@ -28,6 +30,17 @@ function changeColor() {
 	var elem = document.getElementById("P7");
 	elem.parentNode.removeChild(elem);
 	p7=1;
+	var now = new Date();
+	var tmaotc = getNextDayOfWeek(now, WantedDay)
+	
+}
+	
+function changeColor2() {
+	document.body.style.background = "#d4cdff"; 
+	document.body.style.color = "#800000";
+	var elem = document.getElementById("ZE");
+	ZE+=1;
+	elem.text("Conversation Count" + ZE);
 	var now = new Date();
 	var tmaotc = getNextDayOfWeek(now, WantedDay)
 	
