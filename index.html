@@ -12,8 +12,8 @@ p {
 </head>
 <body> <!--style="background-color:#8B4513">-->
 <div>
-<button id = "ZE" onclick = "changeColor()"> Zé tolas, the man! </button> 
-<button id = "P7" onclick = "changeColor2()"> P7 button </button> 
+<button id = "ZE" onclick = "changeColor2()"> Zé tolas, the man! </button> 
+<button id = "P7" onclick = "changeColor()"> P7 button </button> 
 <!--<p style="color:#800000" id="demo"></p>-->
 <p id="demo"></p>
 
@@ -40,7 +40,7 @@ function changeColor2() {
 	document.body.style.color = "#800000";
 	var elem = document.getElementById("ZE");
 	ZE+=1;
-	elem.text("Conversation Count" + ZE);
+	elem.innerHTML = "Conversation Count" + ZE;
 	var now = new Date();
 	var tmaotc = getNextDayOfWeek(now, WantedDay)
 	
